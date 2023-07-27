@@ -1,15 +1,19 @@
 package spring.study1.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import spring.study1.domain.Member;
 import spring.study1.repository.MemberRepository;
 
 import java.util.List;
 import java.util.Optional;
 
+//@Service    // spring이 스프링 컨테이너에 MemberService를 등록해줌
 public class MemberService {
 
     private final MemberRepository memberRepository;
 
+    //@Autowired  // spring이 MemberRepository를 스프링 컨테이너에 있는 MemberRepository를 가져다 연결시켜줌
     public MemberService(MemberRepository memberRepository) {
         this.memberRepository = memberRepository;
     }
