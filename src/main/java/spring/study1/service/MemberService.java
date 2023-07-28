@@ -2,6 +2,7 @@ package spring.study1.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import spring.study1.domain.Member;
 import spring.study1.repository.MemberRepository;
 
@@ -9,6 +10,7 @@ import java.util.List;
 import java.util.Optional;
 
 //@Service    // spring이 스프링 컨테이너에 MemberService를 등록해줌
+@Transactional //jpa사용할때 꼭 필요함
 public class MemberService {
 
     private final MemberRepository memberRepository;
@@ -23,7 +25,24 @@ public class MemberService {
      * 회원가입
      */
     public Long join(Member member){
-        //같은 이름이 있는 중복 회원 X
+
+        /*  AOP 사용전 시간 측정
+        long start = System.currentTimeMillis();
+
+        try {
+            //같은 이름이 있는 중복 회원 X
+            validateDuplicateMember(member);
+
+            memberRepository.save(member);
+            return member.getId();
+        }finally {
+            // 끝날 때 시간 측정
+            long finish = System.currentTimeMillis();
+            long timeMs = finish - start;
+            System.out.println("join : "+ timeMs + "ms");
+        }
+         */
+
         validateDuplicateMember(member);
 
         memberRepository.save(member);

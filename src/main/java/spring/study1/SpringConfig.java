@@ -3,6 +3,7 @@ package spring.study1;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import spring.study1.aop.TimeTraceAop;
 import spring.study1.repository.*;
 import spring.study1.service.MemberService;
 
@@ -53,4 +54,9 @@ public class SpringConfig {
         return new JpaMemberRepository(em);
     }
      */
+
+//    @Bean     //그냥 component scan 쓰기로함
+//    public TimeTraceAop timeTraceAop() {    // Spring bean에 TimeTraceAop 등록
+//        return new TimeTraceAop();
+//    }
 }
